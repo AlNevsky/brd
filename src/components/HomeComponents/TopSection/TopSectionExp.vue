@@ -40,17 +40,6 @@
           { title: 'Закладки', icon: 'question_answer' }
         ]
       }
-    },
-    computed: {
-      promoAds () {
-        return this.$store.getters.promoAds
-      },
-      Ads () {
-        return this.$store.getters.ads
-      },
-      loading () {
-        return this.$store.getters.loading
-      }
     }
   }
 </script>

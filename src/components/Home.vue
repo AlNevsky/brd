@@ -3,7 +3,7 @@
     <SectionTop></SectionTop>        
     <SectionMiddle class="w-container"></SectionMiddle>        
     <SectionBottom class="w-container"></SectionBottom>        
-    <SectionFooter class="w-container"></SectionFooter>
+    <SectionFooter></SectionFooter>
   </div>
 </template>
 

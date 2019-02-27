@@ -1,6 +1,6 @@
 <template>
   <v-container grid-list-lg class="cont-pd ">
-    <v-layout class="">      
+    <v-layout>      
       <v-flex>
          <v-footer
           dark
