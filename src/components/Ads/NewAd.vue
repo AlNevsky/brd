@@ -1,7 +1,7 @@
 <template>
     <v-container>
         <v-layout row>
-            <v-flex xs6 offset-sm3>
+            <v-flex xs4 offset-sm4>
                  <h1>Подать объявление</h1>
                  <hr>
                  <br>
@@ -13,12 +13,14 @@
                 >
                 <v-text-field
                   label="Solo"
+                  hide-details
                   placeholder="Ведите заголовок объявления"
                   solo
                   v-model="title"
                 ></v-text-field>               
 
-                <v-overflow-btn
+                <v-overflow-btn                                  
+                  hide-details
                   :items="dropdown_icon"
                   label="Тип объявления"
                   segmented
@@ -26,15 +28,17 @@
                 ></v-overflow-btn>
 
                 <v-overflow-btn
+                  hide-details
                   :items="dropdown_icon"
                   label="Вид животного"
                   segmented
                   target="#dropdown-example"
                 ></v-overflow-btn>   
-                             
+
                  <br>     
 
                  <v-overflow-btn
+                  hide-details
                   :items="dropdown_icon"
                   label="Порода"
                   segmented
@@ -49,7 +53,8 @@
                     >
                     
                   </v-textarea> -->
-                  <v-textarea                     
+                  <v-textarea
+                    hide-details                     
                     name="description" 
                     label="Введите описание для объявления" 
                     type="text"
@@ -94,14 +99,47 @@
                   </v-flex>
                 </v-layout>
                 <v-layout row>
-                  <v-flex xs12>                    
-                     <v-spacer></v-spacer>
-                     <v-btn
+                  <v-flex xs12>
+                <br>
+                <br>
+                <br>
+
+                 <h1>Ваши контактные данные</h1>
+                 <hr>
+                 <br>
+                  <v-text-field
+                  label="Solo"
+                  placeholder="Ваш город"
+                  solo
+                  v-model="title"
+                ></v-text-field>   
+                <v-text-field
+                  label="Solo"
+                  placeholder="Номер телефона"
+                  solo
+                  v-model="title"
+                ></v-text-field>   
+                <v-text-field
+                  label="Solo"
+                  placeholder="Email адрес"
+                  solo
+                  v-model="title"
+                ></v-text-field>   
+                <v-text-field
+                  label="Solo"
+                  placeholder="Контактное лицо"
+                  solo
+                  v-model="title"
+                ></v-text-field>
+                <v-spacer></v-spacer>  
+                <v-btn
                       :loading="loading" 
                       :disabled="!valid || !image || loading"
                       class="success"
                       @click="createAd"
                       >Create ad</v-btn>
+
+
                   </v-flex>
                 </v-layout>
             </v-flex>
@@ -158,3 +196,19 @@
     }
   }
 </script>
+
+<style scoped lang="stylus">
+  .n-pd
+    padding: 0
+  .item-bg
+      background: rgba(0, 0, 0, 0.2)      
+  .carousel-link 
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    background: rgba(0, 0, 0, .5);
+    transform: translate(-50%, 0);
+    padding: 5px 15px;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+</style>
