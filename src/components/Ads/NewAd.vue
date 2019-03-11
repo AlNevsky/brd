@@ -1,41 +1,71 @@
 <template>
     <v-container>
         <v-layout row>
-            <v-flex xs12 sm6 md4 offset-sm3>
-                 <h1>Create new ad</h1>
+            <v-flex xs6 offset-sm3>
+                 <h1>Подать объявление</h1>
+                 <hr>
+                 <br>
                  <v-form
                   class="mb-3"
                   ref="form"
                   v-model="valid"
                   lazy-validation
                 >
-                  <v-textarea                     
+                <v-text-field
+                  label="Solo"
+                  placeholder="Ведите заголовок объявления"
+                  solo
+                  v-model="title"
+                ></v-text-field>               
+
+                <v-overflow-btn
+                  :items="dropdown_icon"
+                  label="Тип объявления"
+                  segmented
+                  target="#dropdown-example"
+                ></v-overflow-btn>
+
+                <v-overflow-btn
+                  :items="dropdown_icon"
+                  label="Вид животного"
+                  segmented
+                  target="#dropdown-example"
+                ></v-overflow-btn>   
+                             
+                 <br>     
+
+                 <v-overflow-btn
+                  :items="dropdown_icon"
+                  label="Порода"
+                  segmented
+                  target="#dropdown-example"
+                ></v-overflow-btn>
+                  <!-- <v-textarea                     
                     name="title" 
-                    label="Ad title" 
+                    label="Ведите заголовок объявления" 
                     type="text"                    
                     v-model="title"
                     required
-                    :rules="[v => !!v || 'Title is required']"
                     >
                     
-                  </v-textarea>
+                  </v-textarea> -->
                   <v-textarea                     
                     name="description" 
-                    label="Ad description" 
+                    label="Введите описание для объявления" 
                     type="text"
                     v-model="description"
                     multi-line
-                    :rules="[v => !!v || 'Description is required']"
+                   
                     >
                   </v-textarea>
                 </v-form>
                 <v-layout class="mb-3">
                   <v-flex>
                     <v-btn
-                      class="warning"
+                      class="green lighten-3"
                       @click="triggerUpload"
                     >
-                      Upload
+                      Выбрать изображение
                       <v-icon right dark>cloud_upload</v-icon>
                     </v-btn>
                     <input 
