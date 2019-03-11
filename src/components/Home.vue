@@ -1,5 +1,5 @@
 <template>
-     <div>        
+  <div>        
     <SectionTop></SectionTop>        
     <SectionMiddle class="w-container"></SectionMiddle>        
     <SectionBottom class="w-container"></SectionBottom>        
@@ -10,7 +10,7 @@
 <script>
   import TopSection from './HomeComponents/TopSection.vue'
   import MiddleSection from './HomeComponents/MiddleSection.vue'
-  import BottomSection from './HomeComponents/BottomSection.vue'
+  // import BottomSection from './HomeComponents/BottomSection.vue'
   import FooterSection from './HomeComponents/Footer.vue'
   export default {
     computed: {
@@ -27,7 +27,7 @@
     components: {
       SectionTop: TopSection,
       SectionMiddle: MiddleSection,
-      SectionBottom: BottomSection,
+      // SectionBottom: BottomSection,
       SectionFooter: FooterSection
 
     }

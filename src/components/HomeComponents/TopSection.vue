@@ -2,55 +2,58 @@
   <div>
     <v-container fluid  grid-list-md class="n-pd">  
       <v-layout row wrap>
-        <v-flex order-xs2 order-md1 order-sm1 xs12 sm3 md3 lg2>
-          <TopSectionSelect></TopSectionSelect>  
+        <v-tabs
+          centered
+          color="blue-grey lighten-3"
+          dark
+          icons-and-text
+        >
+          <v-tabs-slider color="yellow"></v-tabs-slider>
+
+          <v-tab href="#tab-1">
+            Ищу
+            <v-icon>search</v-icon>
+          </v-tab>
+
+          <v-tab href="#tab-2">
+            Нашел
+            <v-icon>note_add</v-icon>
+          </v-tab>
+
+          <v-tab-item
+            v-for="i in 2"
+            :key="i"
+            :value="'tab-' + i"
+          >
+            <v-card flat>
+              <v-card-text>{{ text }}</v-card-text>
+            </v-card>
+          </v-tab-item>
+        </v-tabs>
+
+        <v-flex xs12 sm3 md3 lg6>
+
         </v-flex>
-        <v-flex order-xs1 order-md2 order-sm2 xs12 sm9 md6 lg8>     
-          <v-carousel>
-            <v-carousel-item
-              v-for="ad in promoAds"
-              :key="ad.id"
-              :src="ad.imageSrc"
-            >
-            <div class="carousel-link">
-              <v-btn 
-              :to="'/ad/' + ad.id"
-              class="red lighten-2"
-              >{{ad.title}}</v-btn>
-            </div>              
-            </v-carousel-item>
-          </v-carousel>
+
+        <v-flex xs12 sm9 md6 lg6>     
+          
         </v-flex>
-        <v-flex order-xs3 order-md3 order-sm3 xs12 sm3 md3 lg2>
-          <TopSectionExp></TopSectionExp>
-        </v-flex>
+
       </v-layout>
     </v-container>
   </div>
 </template>
 
 <script>
-  import TopSectionSelect from './TopSection/TopSectionSelect.vue'
-  import TopSectionExp from './TopSection/TopSectionExp.vue'
   export default {
     data () {
       return {
+        tab: null,
+        items: [
+          'web', 'shopping', 'videos', 'images', 'news'
+        ],
+        text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
       }
-    },
-    computed: {
-      promoAds () {
-        return this.$store.getters.promoAds
-      },
-      Ads () {
-        return this.$store.getters.ads
-      },
-      loading () {
-        return this.$store.getters.loading
-      }
-    },
-    components: {
-      TopSectionSelect: TopSectionSelect,
-      TopSectionExp: TopSectionExp
     }
   }
 </script>

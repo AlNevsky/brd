@@ -4,8 +4,8 @@
       <v-flex
         max-height="500px"             
         xs12
-        sm6
-        md4
+        sm12
+        md12
         v-for="ad of Ads"
         :key="ad.id"
       >

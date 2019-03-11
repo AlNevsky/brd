@@ -66,7 +66,7 @@
             <v-icon left>
               exit_to_app
             </v-icon>
-            Logout
+            Выйти
           </v-btn>
 
         </v-toolbar-items>
@@ -114,9 +114,9 @@ export default {
     links () {
       if (this.isUserLoggedIn) {
         return [
-          {title: 'Orders', icon: 'bookmark_border', url: '/orders'},
-          {title: 'New Item', icon: 'note_add', url: '/new'},
-          {title: 'My Item', icon: 'list', url: '/list'}
+          // {title: 'Orders', icon: 'bookmark_border', url: '/orders'},
+          {title: 'Новое объявление', icon: 'note_add', url: '/new'},
+          {title: 'Мои объявления', icon: 'list', url: '/list'}
         ]
       }
       return [
