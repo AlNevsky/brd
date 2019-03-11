@@ -24,7 +24,6 @@
               <v-list-tile-title v-text="'Logout'"></v-list-tile-title>
             </v-list-tile-content>
           </v-list-tile>
-
         </v-list>
       </v-navigation-drawer>
       <v-toolbar
