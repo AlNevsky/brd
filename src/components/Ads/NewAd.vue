@@ -1,8 +1,13 @@
 <template>
     <v-container>
-        <v-layout row>
-            <v-flex xs4 offset-sm4>
-                 <h1>Подать объявление</h1>
+        <v-layout 
+          row 
+          class="row-style" 
+          justify-center>
+            
+            <v-flex xs6>
+                 <h1 class="text-xs-center">Подать объявление</h1>
+                 <br>
                  <hr>
                  <br>
                  <v-form
@@ -10,16 +15,20 @@
                   ref="form"
                   v-model="valid"
                   lazy-validation
-                >
-                <v-text-field
-                  label="Solo"
-                  hide-details
-                  placeholder="Ведите заголовок объявления"
-                  solo
-                  v-model="title"
-                ></v-text-field>               
-
-                <v-overflow-btn                                  
+                >               
+                 
+                    <p>Заголовок объявления</p>
+                                
+                 
+                    <v-text-field                  
+                      label="Solo"
+                      hide-details
+                      placeholder="Ведите заголовок объявления"
+                      solo
+                      v-model="title"
+                    ></v-text-field> 
+                <v-overflow-btn
+                  class="item-style"                                 
                   hide-details
                   :items="dropdown_icon"
                   label="Тип объявления"
@@ -28,16 +37,16 @@
                 ></v-overflow-btn>
 
                 <v-overflow-btn
+                  class="item-style"
                   hide-details
                   :items="dropdown_icon"
                   label="Вид животного"
                   segmented
                   target="#dropdown-example"
-                ></v-overflow-btn>   
-
-                 <br>     
+                ></v-overflow-btn> 
 
                  <v-overflow-btn
+                  class="item-style"
                   hide-details
                   :items="dropdown_icon"
                   label="Порода"
@@ -54,6 +63,7 @@
                     
                   </v-textarea> -->
                   <v-textarea
+                    class="item-style"
                     hide-details                     
                     name="description" 
                     label="Введите описание для объявления" 
@@ -104,28 +114,36 @@
                 <br>
                 <br>
 
-                 <h1>Ваши контактные данные</h1>
+                 <h1 class="text-xs-center">Ваши контактные данные</h1>
                  <hr>
                  <br>
                   <v-text-field
+                  class="item-style"
+                  hide-details
                   label="Solo"
                   placeholder="Ваш город"
                   solo
                   v-model="title"
                 ></v-text-field>   
                 <v-text-field
+                  class="item-style"
+                  hide-details
                   label="Solo"
                   placeholder="Номер телефона"
                   solo
                   v-model="title"
                 ></v-text-field>   
                 <v-text-field
+                  class="item-style"
+                  hide-details
                   label="Solo"
                   placeholder="Email адрес"
                   solo
                   v-model="title"
                 ></v-text-field>   
                 <v-text-field
+                  class="item-style"
+                  hide-details
                   label="Solo"
                   placeholder="Контактное лицо"
                   solo
@@ -198,6 +216,12 @@
 </script>
 
 <style scoped lang="stylus">
+  .item-style
+    background-color: #fff
+    padding: 0
+    margin: 10px 0 10px 0
+  .row-style
+    background-color: #e1e1e1
   .n-pd
     padding: 0
   .item-bg
