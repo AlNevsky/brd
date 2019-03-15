@@ -1,13 +1,17 @@
 import * as fb from 'firebase'
 
 class Ad {
-  constructor (title, description, ownerId, imageSrc = '', promo = false, id = null) {
+  constructor (location, phoneNumber, email, contactName, title, description, ownerId, imageSrc = '', promo = false, id = null) {
     this.title = title
     this.description = description
     this.ownerId = ownerId
     this.imageSrc = imageSrc
     this.promo = promo
     this.id = id
+    this.location = location
+    this.phoneNumber = phoneNumber
+    this.email = email
+    this.contactName = contactName
   }
 }
 
@@ -47,6 +51,10 @@ export default {
 
       try {
         const newAd = new Ad(
+          payload.location,
+          payload.phoneNumber,
+          payload.email,
+          payload.contactName,
           payload.title,
           payload.description,
           getters.user.id,
@@ -88,7 +96,7 @@ export default {
         Object.keys(ads).forEach(key => {
           const ad = ads[key]
           resultAds.push(
-            new Ad(ad.title, ad.description, ad.ownerId, ad.imageSrc, ad.promo, key)
+            new Ad(ad.title, ad.description, ad.ownerId, ad.imageSrc, ad.promo, key, ad.location, ad.phoneNumber, ad.email, ad.contactName)
           )
         })
         commit('loadAds', resultAds)

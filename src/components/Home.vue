@@ -1,10 +1,14 @@
 <template>
-  <div>        
-    <SectionTop></SectionTop>        
-    <SectionMiddle class="w-container"></SectionMiddle>        
-    <SectionBottom class="w-container"></SectionBottom>        
-    <SectionFooter></SectionFooter>
-  </div>
+  <b-container>        
+    <b-row>
+      <b-col>
+        <SectionTop></SectionTop>        
+        <!-- <SectionMiddle class="w-container"></SectionMiddle>         -->
+        <!-- <SectionBottom class="w-container"></SectionBottom>         -->
+        <!-- <SectionFooter></SectionFooter> -->
+      </b-col>      
+    </b-row>
+  </b-container>
 </template>
 
 <script>
