@@ -5,35 +5,39 @@
               <b-card bg-variant="light">
                 <h1 class="text-xs-center">Подать объявление</h1>         
                                  
-                  <b-row justify-content-center align-items-center align-v="center">
+                  <b-row align-v="center">
                     <b-col offset-sm="3" cols="3" class="text-right"><span>Заголовок * :</span></b-col>
-                    <b-col cols="6"><b-form-input class="f-item-stlyle" placeholder="Введите заголовок"  id="nestedStreet" /></b-col>
+                    <b-col cols="6"><b-form-input 
+                      v-model="title"
+                      class="f-item-stlyle" 
+                      placeholder="Введите заголовок"  
+                      id="nestedStreet" /></b-col>
                   </b-row>
 
-                  <b-row justify-content-center align-items-center align-v="center">
+                  <b-row align-v="center">
                     <b-col offset-sm="3" cols="3" class="text-right"><span>Регион * :</span></b-col>
                     <b-col cols="6">
                       <b-form-select 
                         id="exampleInput3" 
-                        v-model="selected" 
-                        :options="options"
+                        v-model="form.location" 
+                        :options="locations"
                         class="f-item-stlyle">
-                        <template slot="first">
+                        <!-- <template slot="first">
                           <option :value="null" disabled>-- Выберите регион --</option>
-                        </template>
+                        </template> -->
 
-                        <option value="D">Литва</option> <option value="E">Латвия</option>
+                        <!-- <option value="D">Литва</option> <option value="E">Латвия</option> -->
                       </b-form-select>
                     </b-col>
                   </b-row>
 
-                  <b-row justify-content-center align-items-center align-v="center">
+                  <b-row align-v="center">
                     <b-col offset-sm="3" cols="3" class="text-right "><span>Питомец * :</span></b-col>
                     <b-col cols="6">
                       <b-form-select 
                         id="exampleInput3" 
-                        v-model="selected" 
-                        :options="options"
+                        v-model="animal" 
+                        :options="animals"
                         class="f-item-stlyle">
                         <template slot="first">
                           <option :value="null" disabled>-- Выберите вид питомца --</option>
@@ -43,27 +47,39 @@
                       </b-form-select>
                     </b-col>
                   </b-row>
-                  <b-row justify-content-center align-items-center align-v="center">
+
+                  <b-row align-v="center">
                     <b-col offset-sm="3" cols="3" class="text-right"><span>Порода * :</span></b-col>
                     <b-col cols="6">
                       <b-form-select 
                         id="exampleInput3" 
-                        v-model="selected" 
-                        :options="options"
+                        v-model="breed" 
+                        :options="breeds"
                         class="f-item-stlyle">
                         <template slot="first">
                           <option :value="null" disabled>-- Выберите породу --</option>
-                        </template>
-                        <option value="D">Стаффорд</option>
-                        <option value="E">Сфинкс</option>
+                        </template>                        
                       </b-form-select>
+                    </b-col>                    
+                  </b-row>
+
+                  <b-row align-v="center">
+                    <b-col offset-sm="3" cols="3" class="text-right"><span>Описание * :</span></b-col>
+                    <b-col cols="6">
+                      <b-form-textarea
+                        class="f-item-stlyle" 
+                        id="textarea"
+                        v-model="description"
+                        placeholder="Введите описание к объявлению"                        
+                      />
                     </b-col>
+                  </b-row>
                     <b-button
                       class="mx-auto image-button" 
                       variant="outline-success"
                       @click="triggerUpload"
                       >Выбрать изображение
-                      </b-button>                      
+                    </b-button>                      
                       <input 
                       ref="fileInput" 
                       type="file" 
@@ -78,56 +94,41 @@
                             v-if="imageSrc">
                         </b-col>
                       </b-row>
-                  </b-row>
-                
-                
-                 
-            </b-card>
-                <b-row>
+                    
+              </b-card>
+              <b-row>
                 <b-col>
                   <b-card bg-variant="light">
                     <h1 class="text-xs-center">Ваши контактные данные</h1>
-                 <hr>
-                 <br>
-                  <b-form-group
-                  label-cols-sm="6"
-                  label="Регион * :"
-                  label-align-sm="right"
-                  label-for="nestedStreet"
-                >
-                  <b-form-input class="f-item-stlyle" placeholder="Выберите Ваш регион"  id="nestedStreet" />
-                </b-form-group>
-                <b-form-group
-                  label-cols-sm="6"
-                  label="Номер телефона * :"
-                  label-align-sm="right"
-                  label-for="nestedStreet"
-                >
-                  <b-form-input class="f-item-stlyle" placeholder="Введите Ваш номер телефона"  id="nestedStreet" />
-                </b-form-group>
-                <b-form-group
-                  label-cols-sm="6"
-                  label="Email * :"
-                  label-align-sm="right"
-                  label-for="nestedStreet"
-                >
-                  <b-form-input class="f-item-stlyle" placeholder="Введите Ваш Email адрес"  id="nestedStreet" />
-                </b-form-group>
-                <b-form-group
-                  label-cols-sm="6"
-                  label="Контактное лицо * :"
-                  label-align-sm="right"
-                  label-for="nestedStreet"
-                >
-                  <b-form-input class="f-item-stlyle" placeholder="Введите имя контактного лица"  id="nestedStreet" />
-                </b-form-group>
-                  <v-spacer></v-spacer>  
-                  <v-btn
-                    :loading="loading" 
-                    :disabled="!valid || !image || loading"
-                    class="success"
-                    @click="createAd"
-                    >Создать объявление</v-btn>
+                    <b-row align-v="center">
+                      <b-col offset-sm="3" cols="3" class="text-right"><span>Регион * :</span></b-col>
+                      <b-col cols="6">
+                      <b-form-select                        
+                        id="exampleInput3" 
+                        v-model="form.location" 
+                        :options="locations"
+                        class="f-item-stlyle">
+                   
+                      </b-form-select>
+                    </b-col>
+                    </b-row>
+                    <b-row align-v="center">
+                      <b-col offset-sm="3" cols="3" class="text-right"><span>Номер телефона * :</span></b-col>
+                      <b-col cols="6"><b-form-input v-model="phoneNumber" class="f-item-stlyle" placeholder="Введите свой контакнтый номер телефона"  id="nestedStreet" /></b-col>
+                    </b-row>
+                    <b-row align-v="center">
+                      <b-col offset-sm="3" cols="3" class="text-right"><span>Email * :</span></b-col>
+                      <b-col cols="6"><b-form-input v-model="email" class="f-item-stlyle" placeholder="Введите свой контактный email"  id="nestedStreet" /></b-col>
+                    </b-row>
+                    <b-row align-v="center">
+                      <b-col offset-sm="3" cols="3" class="text-right"><span>Контактное лицо * :</span></b-col>
+                      <b-col cols="6"><b-form-input v-model="contactName" class="f-item-stlyle" placeholder="Введите имя контактного лица"  id="nestedStreet" /></b-col>
+                    </b-row>
+                     <b-btn
+                      :loading="loading"                      
+                      class="success"
+                      @click="createAd"
+                      >Create ad</b-btn>
                   </b-card>
                 </b-col>
               </b-row>
@@ -140,15 +141,20 @@
   export default {
     data () {
       return {
+        form: {
+          location: '',
+          animal: '',
+          breed: ''
+        },
         title: '',
         description: '',
         valid: false,
         image: null,
         imageSrc: '',
-        addType: ['Ищу', 'Нашел', 'Частное'],
-        animal: ['Собаки', 'Кошки', 'Птицы', 'Рептилии'],
-        breed: ['Сфинкс', 'Питбулль'],
-        location: '',
+        addType: [{text: 'Select One', value: null}, 'Ищу', 'Нашел', 'Частное'],
+        animals: ['Собаки', 'Кошки', 'Птицы', 'Рептилии'],
+        breeds: ['Сфинкс', 'Питбулль', 'Бенгальский попугай', 'Чистый змей'],
+        locations: [{text: 'США', value: null}, 'Украина', 'Россия', 'Беларусь'],
         phoneNumber: '',
         email: '',
         contactName: ''
@@ -161,16 +167,22 @@
     },
     methods: {
       createAd () {
-        if (this.$refs.form.validate() && this.image) {
+        if (this.image) {
           const ad = {
-            location: this.location,
+            title: this.title,
+            description: this.description,
+            animal: this.animal,
+            breed: this.breed,
+            locations: this.locations,
             phoneNumber: this.phoneNumber,
             email: this.email,
             contactName: this.contactName,
-            title: this.title,
-            description: this.description,
             promo: this.promo,
             image: this.image
+            // location: this.location,
+            // phoneNumber: this.phoneNumber,
+            // email: this.email,
+            // contactName: this.contactName,
           }
           this.$store.dispatch('createAd', ad)
             .then(() => {

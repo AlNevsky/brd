@@ -1,17 +1,23 @@
 import * as fb from 'firebase'
 
 class Ad {
-  constructor (location, phoneNumber, email, contactName, title, description, ownerId, imageSrc = '', promo = false, id = null) {
+  constructor (title, description, animal, breed, locations, phoneNumber, email, contactName, ownerId, imageSrc = '', promo = false, id = null) {
     this.title = title
     this.description = description
+    this.animal = animal
+    this.breed = breed
+    this.locations = locations
+    this.phoneNumber = phoneNumber
+    this.email = email
+    this.contactName = contactName
     this.ownerId = ownerId
     this.imageSrc = imageSrc
     this.promo = promo
     this.id = id
-    this.location = location
-    this.phoneNumber = phoneNumber
-    this.email = email
-    this.contactName = contactName
+    // this.location = location
+    // this.phoneNumber = phoneNumber
+    // this.email = email
+    // this.contactName = contactName
   }
 }
 
@@ -51,12 +57,14 @@ export default {
 
       try {
         const newAd = new Ad(
-          payload.location,
+          payload.title,
+          payload.description,
+          payload.animal,
+          payload.breed,
+          payload.locations,
           payload.phoneNumber,
           payload.email,
           payload.contactName,
-          payload.title,
-          payload.description,
           getters.user.id,
           '',
           payload.promo
@@ -96,7 +104,7 @@ export default {
         Object.keys(ads).forEach(key => {
           const ad = ads[key]
           resultAds.push(
-            new Ad(ad.title, ad.description, ad.ownerId, ad.imageSrc, ad.promo, key, ad.location, ad.phoneNumber, ad.email, ad.contactName)
+            new Ad(ad.title, ad.description, ad.animal, ad.breed, ad.locations, ad.phoneNumber, ad.email, ad.contactName, ad.ownerId, ad.imageSrc, ad.promo, key)
           )
         })
         commit('loadAds', resultAds)
