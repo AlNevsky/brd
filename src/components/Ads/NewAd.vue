@@ -22,11 +22,7 @@
                         v-model="form.location" 
                         :options="locations"
                         class="f-item-stlyle">
-                        <!-- <template slot="first">
-                          <option :value="null" disabled>-- Выберите регион --</option>
-                        </template> -->
-
-                        <!-- <option value="D">Литва</option> <option value="E">Латвия</option> -->
+                       
                       </b-form-select>
                     </b-col>
                   </b-row>
@@ -151,7 +147,7 @@
         valid: false,
         image: null,
         imageSrc: '',
-        addType: [{text: 'Select One', value: null}, 'Ищу', 'Нашел', 'Частное'],
+        adType: [{text: 'Select One', value: null}, 'Ищу', 'Нашел', 'Частное'],
         animals: ['Собаки', 'Кошки', 'Птицы', 'Рептилии'],
         breeds: ['Сфинкс', 'Питбулль', 'Бенгальский попугай', 'Чистый змей'],
         locations: [{text: 'США', value: null}, 'Украина', 'Россия', 'Беларусь'],
