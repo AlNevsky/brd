@@ -175,10 +175,6 @@
             contactName: this.contactName,
             promo: this.promo,
             image: this.image
-            // location: this.location,
-            // phoneNumber: this.phoneNumber,
-            // email: this.email,
-            // contactName: this.contactName,
           }
           this.$store.dispatch('createAd', ad)
             .then(() => {
