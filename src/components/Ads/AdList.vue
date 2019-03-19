@@ -1,60 +1,80 @@
 <template>
-    <v-container>
-        <v-layout row v-if="!loading && myAds.length !== 0">
-            <v-flex xs12 sm6 offser-sm3>
-                 <h1 class="test--secondary mb-3">My ads</h1>
-                 <v-card 
-                  class="elevation-10 mb-2"
-                  v-for="ad in myAds"
-                  :key="ad.id"
-                  >
-                   <v-layout>
-                     <v-flex xs4>
-                       <v-card-media
-                        :src="ad.imageSrc"
-                        height="160px"
-                       >
-                       </v-card-media>
-                     </v-flex>
-                     <v-flex xs8>
-                       <v-card-text>
-                         <h2 class="text--primary">{{ad.title}}</h2>
-                         <p>{{ad.description}}</p>
-                       </v-card-text>
-                       <v-card-actions>
-                         <v-spacer></v-spacer>
-                         <v-btn 
-                          class="info"
-                          :to="'/ad/' + ad.id"
-                          >Open</v-btn>
-                       </v-card-actions>
-                     </v-flex>
-                   </v-layout>
-                 </v-card>   
-            </v-flex>
-        </v-layout>
-        <v-layout v-else-if="!loading && myAds.length === 0">
-          <v-flex xs12 class="text-xs-center">
-            <h1 class="text--primary">
-              You have no ads
-            </h1>
-          </v-flex>
-        </v-layout>
-        <v-layout v-else>
-          <v-flex xs12 class="text-xs-center">
-            <v-progress-circular
-              :size="100"
-              :width="4"
-              indeterminate
-              color="green"
-            ></v-progress-circular>
-          </v-flex>
-        </v-layout>
-    </v-container>
+  <b-container>
+    <b-row>
+      <b-row row v-if="!loading && myAds.length !== 0">
+        <b-col>
+          <h1 class="text--secondary mb-3 text-center">Мои объявления</h1>
+          <b-col             
+            class="elevation-10 pd-0 mb-2 adList-item-stlyle"
+            v-for="ad in myAds"
+            :key="ad.id"            
+            >
+            <b-card>
+              <b-row>
+              <b-col sm="3">
+                <v-img
+                :src="ad.imageSrc"
+                height="300px"
+                >
+                </v-img>
+              </b-col>
+              <b-col>
+                <b-card-text>
+                  <h2 class="text--primary">{{ad.title}}</h2>
+                  <b-breadcrumb :items="breadcrumbList" />
+                  <p>{{ad.description}}</p>
+                </b-card-text>
+                  <b-button
+                    variant="outline-primary"                       
+                    :to="'/ad/' + ad.id"
+                    >Подробнее...</b-button>                  
+                </b-col>
+              </b-row>
+            </b-card>
+          </b-col>   
+        </b-col>
+      </b-row>
+      <b-row v-else-if="!loading && myAds.length === 0">
+        <b-col xs12 class="text-xs-center">
+          <h1 class="text--primary">
+            You have no ads
+          </h1>
+        </b-col>
+      </b-row>
+      <b-row v-else>
+        <b-col xs12 class="text-xs-center">
+          <v-progress-circular
+            :size="100"
+            :width="4"
+            indeterminate
+            color="green"
+          ></v-progress-circular>
+        </b-col>
+      </b-row>
+    </b-row>
+  </b-container>
 </template>
 
 <script>
   export default {
+    data () {
+      return {
+        breadcrumbList: [
+          {
+            text: 'Ищу',
+            href: '#'
+          },
+          {
+            text: 'Собаки',
+            href: '#'
+          },
+          {
+            text: 'Стаффорд',
+            active: true
+          }
+        ]
+      }
+    },
     computed: {
       myAds () {
         return this.$store.getters.myAds
@@ -65,3 +85,12 @@
     }
   }
 </script>
+
+<style scoped lang="stylus">
+  // .adList-item-stlyle
+  //   max-height: 350px
+  //   height : 100%
+  .pd-0
+    padding: 0
+
+</style>
