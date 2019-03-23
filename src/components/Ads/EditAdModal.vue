@@ -28,7 +28,7 @@
               </b-row>
               <b-row class="mb-2" align-v="center">
                 <b-col cols="3"><span>Регион * :</span></b-col>
-                <b-col><b-form-select :options="variants"/></b-col>
+                <b-col><b-form-select v-model="form.location" :options="editedLocations"/></b-col>
                 <template slot="first">
                   <option :value="null" disabled>-- Выберите Ваш регион --</option>
                 </template>                  
@@ -36,7 +36,7 @@
 
               <b-row class="mb-2" align-v="center">
                 <b-col cols="3" ><span>Питомец * :</span></b-col>
-                <b-col><b-form-select v-model="editedAnimal" :options="animals" />
+                <b-col><b-form-select v-model="form.animals" :options="editedAnimal" />
                 <template slot="first">
                   <option :value="null" disabled>-- Выберите вид питомца --</option>
                 </template></b-col>          
@@ -44,7 +44,7 @@
 
               <b-row class="mb-3" align-v="center">
                 <b-col cols="3"><span>Порода :</span></b-col>
-                <b-col><b-form-select v-model="editedBreed" :options="animals" />
+                <b-col><b-form-select v-model="form.breed" :options="editedBreed" />
                 <template slot="first">
                   <option :value="null" disabled>-- Выберите породу питомца --</option>
                 </template></b-col>          
@@ -80,7 +80,7 @@
                 <b-form-select                        
                   id="exampleInput3" 
                   v-model="form.location" 
-                  :options="locations"
+                  :options="editedLocations"
                   class="f-item-stlyle">
               
                 </b-form-select>
@@ -88,15 +88,15 @@
               </b-row>
               <b-row class="mb-2" align-v="center">
                 <b-col cols="3"><span>Номер телефона * :</span></b-col>
-                <b-col cols="9"><b-form-input v-model="editedPhoneNumber" class="f-item-stlyle" placeholder="Введите свой контакнтый номер телефона"  id="nestedStreet" /></b-col>
+                <b-col cols="9"><b-form-input v-model="editedPhoneNumber" class="f-item-stlyle" placeholder="Введите свой контакнтый номер телефона"/></b-col>
               </b-row>
               <b-row class="mb-2" align-v="center">
                 <b-col cols="3"><span>Email * :</span></b-col>
-                <b-col cols="9"><b-form-input v-model="editedEmail" class="f-item-stlyle" placeholder="Введите свой контактный email"  id="nestedStreet" /></b-col>
+                <b-col cols="9"><b-form-input v-model="editedEmail" class="f-item-stlyle" placeholder="Введите свой контактный email"/></b-col>
               </b-row>
               <b-row class="mb-3" align-v="center">
                 <b-col cols="3"><span>Контактное лицо * :</span></b-col>
-                <b-col cols="9"><b-form-input v-model="editedContactName" class="f-item-stlyle" placeholder="Введите имя контактного лица"  id="nestedStreet" /></b-col>
+                <b-col cols="9"><b-form-input v-model="editedContactName" class="f-item-stlyle" placeholder="Введите имя контактного лица"/></b-col>
               </b-row>
               <b-row>
                 <b-col  offset-sm="10">
@@ -123,7 +123,8 @@ export default {
       form: {
         location: '',
         animal: '',
-        breed: ''
+        breed: '',
+        phoneNumber: ''
       },
       editedTitle: this.ad.title,
       editedDescription: this.ad.description,
@@ -143,12 +144,13 @@ export default {
     },
     onSave () {
       if (this.editedDescription !== '' && this.editedTitle !== '') {
+        console.log('this.phoneNumber', this.phoneNumber)
         this.$store.dispatch('updateAd', {
           title: this.editedTitle,
           description: this.editedDescription,
-          phoneNumber: this.ad.phoneNumber,
-          email: this.ad.email,
-          contactName: this.ad.contactName,
+          phoneNumber: this.editedPhoneNumber,
+          email: this.editedEmail,
+          contactName: this.editedContactName,
           id: this.ad.id
         })
       }

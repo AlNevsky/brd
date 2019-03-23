@@ -120,8 +120,8 @@ export default {
         ]
       }
       return [
-        {title: 'Login', icon: 'lock', url: '/login'},
-        {title: 'Registration', icon: 'face', url: '/registration'}
+        {title: 'Вход', icon: 'lock', url: '/login'},
+        {title: 'Регистрация', icon: 'face', url: '/registration'}
       ]
     }
   },

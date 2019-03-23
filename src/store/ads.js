@@ -32,13 +32,16 @@ export default {
     loadAds (state, payload) {
       state.ads = payload
     },
-    updateAd (state, {title, description, id}) {
+    updateAd (state, {title, description, phoneNumber, email, contactName, id}) {
       const ad = state.ads.find(a => {
         return a.id === id
       })
 
       ad.title = title
       ad.description = description
+      ad.phoneNumber = phoneNumber
+      ad.email = email
+      ad.contactName = contactName
     },
     updateShow (state, {isShow, id}) {
       const ad = state.ads.find(a => {
@@ -115,15 +118,15 @@ export default {
         throw error
       }
     },
-    async updateAd ({commit}, {title, description, id}) {
+    async updateAd ({commit}, {title, description, phoneNumber, email, contactName, id}) {
       commit('clearError')
       commit('setLoading', true)
       try {
         await fb.database().ref('ads').child(id).update({
-          title, description
+          title, description, phoneNumber, email, contactName
         })
         commit('updateAd', {
-          title, description, id
+          title, description, phoneNumber, email, contactName, id
         })
         commit('setLoading', false)
       } catch (error) {

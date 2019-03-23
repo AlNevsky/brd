@@ -3,18 +3,18 @@
         <v-layout row>
           <v-flex xs12>
             <v-card v-if="!loading">
-              <v-card-media 
+              <v-img 
                 :src="ad.imageSrc"
                 height="600px"
               >                 
-              </v-card-media>              
+              </v-img>              
               <v-card-text>
                 <h1 class="text--primary">{{ad.title}}</h1>
                 <p>{{ad.description}}</p>
               </v-card-text>
               <v-card-actions>
                 <v-spacer></v-spacer>
-                <addEditAdModal class="mr-2" :ad="ad" v-if="isOwner"></addEditAdModal>
+                <editAdModal class="mr-2" :ad="ad" v-if="isOwner"></editAdModal>
                 <app-buy-modal :ad="ad"></app-buy-modal>
               </v-card-actions>
             </v-card>
@@ -48,7 +48,7 @@ export default {
     }
   },
   components: {
-    addEditAdModal: EditAdModal
+    editAdModal: EditAdModal
   }
 }
 </script>

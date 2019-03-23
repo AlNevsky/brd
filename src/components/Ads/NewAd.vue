@@ -138,7 +138,7 @@
     data () {
       return {
         form: {
-          location: '',
+          location: null,
           animal: '',
           breed: ''
         },
